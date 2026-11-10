@@ -1,1 +1,361 @@
-fix branch
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Свадьба Данила и Елизаветы</title>
+  <style>
+    :root {
+      --bg-cream: #fbf9f5;
+      --bg-powder: #f4e9e4;
+      --accent-brown: #8b6e5a;
+      --accent-emerald: #3a6b55;
+      --text-dark: #333333;
+      --text-gray: #666666;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Georgia', serif;
+      background-color: var(--bg-cream);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    .sans { font-family: 'Helvetica Neue', Arial, sans-serif; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4));
+      z-index: 1;
+    }
+    .hero-bg-img {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      filter: brightness(0.8);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 1rem;
+    }
+    .hero h1 {
+      font-family: 'Georgia', serif;
+      font-size: 3.5rem;
+      line-height: 1.1;
+      color: #fff;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      margin-bottom: 0.5rem;
+    }
+    .hero .date {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 1.5rem;
+      color: #fff;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    }
+
+    /* Sections */
+    section { padding: 4rem 0; }
+    h2 {
+      font-family: 'Georgia', serif;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--text-dark);
+    }
+    .section-text { max-width: 700px; margin: 0 auto; text-align: center; color: var(--text-gray); }
+    .section-text p { margin-bottom: 1.2rem; }
+
+    /* Gallery grid */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .gallery-item img {
+      width: 100%; height: 240px;
+      object-fit: cover;
+      border-radius: 6px;
+      display: block;
+    }
+
+    /* Details */
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .detail-card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      text-align: center;
+    }
+    .detail-card h3 {
+      font-family: 'Georgia', serif;
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-dark);
+    }
+    .detail-card p { color: var(--text-gray); }
+
+    /* RSVP form */
+    .rsvp-form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label {
+      display: block;
+      font-family: 'Georgia', serif;
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+      color: var(--text-dark);
+    }
+    .form-control {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 1rem;
+    }
+    .form-row { display: flex; gap: 1rem; }
+    .form-row .form-control { flex: 1; }
+    button.submit-btn {
+      width: 100%;
+      padding: 1rem;
+      background: var(--accent-emerald);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button.submit-btn:hover { background: #2f5a44; }
+
+    /* Footer */
+    footer {
+      background: #fff;
+      padding: 3rem 0 2rem;
+      text-align: center;
+      border-top: 1px solid #eee;
+    }
+    .footer-contacts p { margin-bottom: 0.5rem; }
+    .footer-contacts a { color: var(--accent-brown); text-decoration: none; }
+    .footer-contacts a:hover { text-decoration: underline; }
+
+    /* Animations */
+    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s, transform 0.8s; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.2s; }
+    .delay-2 { transition-delay: 0.4s; }
+    .delay-3 { transition-delay: 0.6s; }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      .hero .date { font-size: 1.2rem; }
+      h2 { font-size: 2rem; }
+      .form-row { flex-direction: column; gap: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Фоновая музыка (автовоспроизведение без звука по стандартам браузеров) -->
+  <audio id="bg-music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+  <button id="play-music" style="position:fixed;bottom:20px;right:20px;padding:10px 16px;background:#fff;border:1px solid #ccc;border-radius:6px;cursor:pointer;z-index:9999;">Включить музыку</button>
+
+  <!-- Главный экран -->
+  <header class="hero">
+    <img src="hero-photo.jpg" alt="Свадебная фотография" class="hero-bg-img">
+    <div class="hero-content fade-in">
+      <h1>Данил и Елизавета</h1>
+      <div class="date">15.08.2027</div>
+    </div>
+  </header>
+
+  <!-- О нас -->
+  <section id="about">
+    <div class="container">
+      <h2 class="fade-in delay-1">О нас</h2>
+      <p class="section-text fade-in delay-2">
+        Данил и Елизавета познакомились в парке, когда оба спешили на разные встречи, но остановились, чтобы полюбоваться осенними листьями. С тех пор они вместе замечают красоту в мелочах и верят, что счастье — в простых моментах рядом друг с другом.
+      </p>
+      <p class="section-text fade-in delay-3">
+        Их история — это про доверие, поддержку и умение смеяться над одними и теми же шутками. И теперь они хотят разделить этот особенный день с самыми близкими людьми.
+      </p>
+      <div class="gallery-grid fade-in delay-3" style="margin-top: 2.5rem;">
+        <div class="gallery-item"><img src="photo1.jpg" alt="Фото пары 1"></div>
+        <div class="gallery-item"><img src="photo2.jpg" alt="Фото пары 2"></div>
+        <div class="gallery-item"><img src="photo3.jpg" alt="Фото пары 3"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Детали свадьбы -->
+  <section id="details">
+    <div class="container">
+      <h2 class="fade-in delay-1">Детали свадьбы</h2>
+      <div class="details-grid fade-in delay-2">
+        <div class="detail-card">
+          <h3>Место</h3>
+          <p>Брянск, Бежицкий район, улица Олеко Дундича, 5</p>
+        </div>
+        <div class="detail-card">
+          <h3>Сбор гостей</h3>
+          <p>15:00</p>
+        </div>
+        <div class="detail-card">
+          <h3>Церемония</h3>
+          <p>15:30</p>
+        </div>
+        <div class="detail-card">
+          <h3>Банкет</h3>
+          <p>16:30</p>
+        </div>
+        <div class="detail-card">
+          <h3>Дресс-код</h3>
+          <p>Пастельные, зелёные, коричневые оттенки</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Анкета RSVP -->
+  <section id="rsvp">
+    <div class="container">
+      <h2 class="fade-in delay-1">Подтвердите присутствие</h2>
+      <p class="section-text fade-in delay-2">Пожалуйста, подтвердите ваше присутствие до 15 июля 2027 года.</p>
+      <form class="rsvp-form fade-in delay-3" action="https://docs.google.com/forms/d/e/ВАШ_ID_ФОРМЫ/formResponse" method="POST">
+        <div class="form-group">
+          <label>Имя и фамилия гостя</label>
+          <input type="text" name="entry.ХХХХХХХХХХ" class="form-control" placeholder="Иван Иванов" required>
+        </div>
+        <div class="form-group">
+          <label>Придёте ли вы?</label>
+          <select id="attendance" name="entry.ХХХХХХХХХХ" class="form-control" required>
+            <option value="" disabled selected>Выберите вариант</option>
+            <option value="Да">Да</option>
+            <option value="Нет">Нет</option>
+          </select>
+        </div>
+        <div id="drink-section" class="form-group" style="display:none;">
+          <label>Что будете пить?</label>
+          <select name="entry.ХХХХХХХХХХ" class="form-control">
+            <option value="Безалкогольные напитки">Безалкогольные напитки</option>
+            <option value="Вино красное">Вино красное</option>
+            <option value="Вино белое">Вино белое</option>
+            <option value="Шампанское">Шампанское</option>
+            <option value="Крепкий алкоголь">Крепкий алкоголь</option>
+            <option value="Не пью">Не пью</option>
+          </select>
+        </div>
+        <div id="allergy-section" class="form-group" style="display:none;">
+          <label>Есть ли аллергия или особые предпочтения в еде?</label>
+          <textarea name="entry.ХХХХХХХХХХ" class="form-control" rows="3" placeholder="Например, аллергия на орехи..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Отправить</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Галерея (опционально) -->
+  <section id="gallery">
+    <div class="container">
+      <h2 class="fade-in delay-1">Моменты вместе</h2>
+      <div class="gallery-grid fade-in delay-2" style="margin-top: 2rem;">
+        <div class="gallery-item"><img src="gallery1.jpg" alt="Фото 1"></div>
+        <div class="gallery-item"><img src="gallery2.jpg" alt="Фото 2"></div>
+        <div class="gallery-item"><img src="gallery3.jpg" alt="Фото 3"></div>
+        <div class="gallery-item"><img src="gallery4.jpg" alt="Фото 4"></div>
+        <div class="gallery-item"><img src="gallery5.jpg" alt="Фото 5"></div>
+        <div class="gallery-item"><img src="gallery6.jpg" alt="Фото 6"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Футер -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-contacts">
+        <p>Организатор / Контактное лицо: Данил</p>
+        <p>Телефон: <a href="tel:+79803154574">+7 (980) 315-45-74</a></p>
+        <p>Соцсети: <a href="#">Telegram</a> | <a href="#">VK</a></p>
+      </div>
+      <p style="margin-top: 1.5rem; font-size: 0.85rem; color: #999;">© 2027 Данил и Елизавета. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Музыка
+    const playBtn = document.getElementById('play-music');
+    const audio = document.getElementById('bg-music');
+    let musicPlayed = false;
+    playBtn.addEventListener('click', () => {
+      if (!musicPlayed) {
+        audio.play().catch(e => console.log('Автовоспроизведение заблокировано браузером'));
+        playBtn.textContent = 'Музыка включена';
+        playBtn.style.background = '#eee';
+        musicPlayed = true;
+      }
+    });
+
+    // RSVP логика
+    const attendance = document.getElementById('attendance');
+    const drinkSection = document.getElementById('drink-section');
+    const allergySection = document.getElementById('allergy-section');
+    attendance.addEventListener('change', () => {
+      const val = attendance.value;
+      if (val === 'Да') {
+        drinkSection.style.display = 'block';
+        allergySection.style.display = 'block';
+      } else {
+        drinkSection.style.display = 'none';
+        allergySection.style.display = 'none';
+      }
+    });
+
+    // Плавное появление при скролле
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
