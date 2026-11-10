@@ -190,7 +190,7 @@
 </head>
 <body>
 
-  <!-- Фоновая музыка (автовоспроизведение без звука по стандартам браузеров) -->
+  <!-- Фоновая музыка -->
   <audio id="bg-music" loop>
     <source src="music.mp3" type="audio/mpeg">
   </audio>
@@ -218,7 +218,6 @@
       <div class="gallery-grid fade-in delay-3" style="margin-top: 2.5rem;">
         <div class="gallery-item"><img src="photo1.jpg" alt="Фото пары 1"></div>
         <div class="gallery-item"><img src="photo2.jpg" alt="Фото пары 2"></div>
-        <div class="gallery-item"><img src="photo3.jpg" alt="Фото пары 3"></div>
       </div>
     </div>
   </section>
@@ -257,13 +256,16 @@
     <div class="container">
       <h2 class="fade-in delay-1">Подтвердите присутствие</h2>
       <p class="section-text fade-in delay-2">Пожалуйста, подтвердите ваше присутствие до 15 июля 2027 года.</p>
+      <!-- ЗАМЕНИТЕ URL НИЖЕ НА ВАШУ ФОРМУ GOOGLE FORMS -->
       <form class="rsvp-form fade-in delay-3" action="https://docs.google.com/forms/d/e/ВАШ_ID_ФОРМЫ/formResponse" method="POST">
         <div class="form-group">
           <label>Имя и фамилия гостя</label>
+          <!-- ЗАМЕНИТЕ entry.ХХХХХХХХХХ НА ВАШ entry-ПАРАМЕТР -->
           <input type="text" name="entry.ХХХХХХХХХХ" class="form-control" placeholder="Иван Иванов" required>
         </div>
         <div class="form-group">
           <label>Придёте ли вы?</label>
+          <!-- ЗАМЕНИТЕ entry.ХХХХХХХХХХ НА ВАШ entry-ПАРАМЕТР -->
           <select id="attendance" name="entry.ХХХХХХХХХХ" class="form-control" required>
             <option value="" disabled selected>Выберите вариант</option>
             <option value="Да">Да</option>
@@ -272,6 +274,7 @@
         </div>
         <div id="drink-section" class="form-group" style="display:none;">
           <label>Что будете пить?</label>
+          <!-- ЗАМЕНИТЕ entry.ХХХХХХХХХХ НА ВАШ entry-ПАРАМЕТР -->
           <select name="entry.ХХХХХХХХХХ" class="form-control">
             <option value="Безалкогольные напитки">Безалкогольные напитки</option>
             <option value="Вино красное">Вино красное</option>
@@ -283,25 +286,11 @@
         </div>
         <div id="allergy-section" class="form-group" style="display:none;">
           <label>Есть ли аллергия или особые предпочтения в еде?</label>
+          <!-- ЗАМЕНИТЕ entry.ХХХХХХХХХХ НА ВАШ entry-ПАРАМЕТР -->
           <textarea name="entry.ХХХХХХХХХХ" class="form-control" rows="3" placeholder="Например, аллергия на орехи..."></textarea>
         </div>
         <button type="submit" class="submit-btn">Отправить</button>
       </form>
-    </div>
-  </section>
-
-  <!-- Галерея (опционально) -->
-  <section id="gallery">
-    <div class="container">
-      <h2 class="fade-in delay-1">Моменты вместе</h2>
-      <div class="gallery-grid fade-in delay-2" style="margin-top: 2rem;">
-        <div class="gallery-item"><img src="gallery1.jpg" alt="Фото 1"></div>
-        <div class="gallery-item"><img src="gallery2.jpg" alt="Фото 2"></div>
-        <div class="gallery-item"><img src="gallery3.jpg" alt="Фото 3"></div>
-        <div class="gallery-item"><img src="gallery4.jpg" alt="Фото 4"></div>
-        <div class="gallery-item"><img src="gallery5.jpg" alt="Фото 5"></div>
-        <div class="gallery-item"><img src="gallery6.jpg" alt="Фото 6"></div>
-      </div>
     </div>
   </section>
 
